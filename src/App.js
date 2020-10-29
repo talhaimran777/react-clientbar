@@ -20,11 +20,13 @@ export class app extends Component {
             <Router>
                 <div className="app">
                     <Nav/>
+                    <div className="container">
+                    <Switch>
+                        <Route to exact = "/" component = {Dashboard}/>
+                    </Switch>
+                    </div>
                 </div>
 
-                <Switch>
-                    <Route to exact = "/" component = {Dashboard}/>
-                </Switch>
             </Router>
         )
     }
