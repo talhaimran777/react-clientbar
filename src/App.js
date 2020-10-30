@@ -12,7 +12,7 @@ import {ReactReduxFirebaseProvider} from 'react-redux-firebase';
 import Nav from './components/layouts/nav/navbar';
 import Dashboard from './components/dashboard/dashboard';
 import AddClient from './components/addClient/addClient';
-
+import ClientDetails from './components/clientDetails/clientDetails';
 export class app extends Component {
     render() {
         return (
@@ -34,6 +34,10 @@ export class app extends Component {
                                 <Route exact path = "/dashboard" component = {Dashboard}/>
 
                                 <Route exact path = "/client/add" component = {AddClient}/>
+
+
+                                <Route exact path = "/client/:id" component = {ClientDetails}/>
+
                             </Switch>
                             </div>
                         </div>

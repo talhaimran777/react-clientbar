@@ -17,7 +17,7 @@ export class clients extends Component {
     getTotalBalance = () =>{
         let total  = 0;
         const {clients} = this.props;
-        clients.map(client => {total +=  parseInt(client.balance)});
+        clients.map(client => total +=  parseInt(client.balance));
         return total;
     }
 
