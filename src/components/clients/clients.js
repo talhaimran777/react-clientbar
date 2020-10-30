@@ -1,33 +1,25 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
+
+// For getting data from the cloud firestore
+import {connect} from 'react-redux';
+import {compose} from 'redux';
+import {firestoreConnect, isLoaded} from 'react-redux-firebase';
 export class clients extends Component {
-
-    constructor(props){
-        super(props);
-
-        this.state = {
-            clients:[
-                {
-                    id: 1,
-                    firstName: 'Hamza',
-                    lastName: 'Imran',
-                    email: 'himran284@gmail.com',
-                    balance: 50,
-                },
-                {
-                    id: 2,
-                    firstName: 'Mushraf',
-                    lastName: 'Mobeen',
-                    email: 'mmobeen284@gmail.com',
-                    balance: 150,
-                }
-
-            ]
-        }
-    }
     render() {
+        const {clients}  = this.props;
 
-        if(this.state.clients.length !== 0){
+        if(!isLoaded(clients)){
+            return (
+                <div className="d-flex justify-content-center mt-5">
+                    <div className="spinner-border" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>
+                </div>
+            )
+        }
+
+        if(clients.length !== 0){
             return(
                 <div className="clients">
                     <div className="row">
@@ -51,7 +43,7 @@ export class clients extends Component {
                         </thead>
                         <tbody>
 
-                            {this.state.clients.map((client) =>{
+                            {clients.map((client) =>{
                                 return (
                                     <tr key = {client.id}>
                                         <td>{client.firstName} {client.lastName}</td>
@@ -74,9 +66,9 @@ export class clients extends Component {
         }
         else{
             return(
-                <div class="d-flex justify-content-start mt-5 ml-5">
-                    <div class="spinner-border" role="status">
-                        <span class="sr-only">Loading...</span>
+                <div className="d-flex justify-content-start mt-5 ml-5">
+                    <div className="spinner-border" role="status">
+                        <span className="sr-only">Loading...</span>
                     </div>
                 </div>
             )
@@ -85,4 +77,9 @@ export class clients extends Component {
     }
 }
 
-export default clients
+export default compose(
+    firestoreConnect(() => ['clients']),
+    connect((state) => ({
+        clients: state.firestore.ordered.clients
+    }))
+)(clients);
