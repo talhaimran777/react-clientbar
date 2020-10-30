@@ -6,9 +6,23 @@ import {connect} from 'react-redux';
 import {compose} from 'redux';
 import {firestoreConnect, isLoaded} from 'react-redux-firebase';
 export class clients extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            totalOwed: null
+        }
+    }
+
+    getTotalBalance = () =>{
+        let total  = 0;
+        const {clients} = this.props;
+        clients.map(client => {total +=  parseInt(client.balance)});
+        return total;
+    }
+
     render() {
         const {clients}  = this.props;
-
         if(!isLoaded(clients)){
             return (
                 <div className="d-flex justify-content-center mt-5">
@@ -28,7 +42,14 @@ export class clients extends Component {
                                 <i className = "fas fa-users"></i> Clients
                             </h3>      
                         </div>
-                        <div className="col-md-6"></div>
+                        <div className="col-md-6">
+                            <div className="text-right mt-1">
+                                <h5 className = "text-secondary">Total: <span className="text-primary">${this.getTotalBalance()}</span> </h5>
+                                
+                                {/* {this.getTotalBalance() > 0 ? <h5 className = "text-secondary">Total: <span className="text-primary">${this.getTotalBalance()}</span> </h5> : <h5>Total: <span className="text-success">${this.getTotalBalance()}</span> </h5>} */}
+                                
+                            </div>
+                        </div>
                     </div>
 
 
