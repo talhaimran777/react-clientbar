@@ -60,7 +60,7 @@ export class clients extends Component {
 
                                         <td>
                                             <Link to = {`/client/${client.id}`} className = "btn btn-secondary btn-sm">
-                                            <i class="fas fa-arrow-right"></i>
+                                            <i className="fas fa-arrow-right"></i>
                                                 {' '}Details
                                             </Link>
                                         </td>

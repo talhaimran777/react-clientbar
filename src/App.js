@@ -29,7 +29,7 @@ export class app extends Component {
                             <Nav/>
                             <div className="container">
                             <Switch>
-                                <Route to exact = "/" component = {Dashboard}/>
+                                <Route to = "/" exact component = {Dashboard}/>
                             </Switch>
                             </div>
                         </div>
