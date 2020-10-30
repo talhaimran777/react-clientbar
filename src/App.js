@@ -11,6 +11,7 @@ import {ReactReduxFirebaseProvider} from 'react-redux-firebase';
 // Components
 import Nav from './components/layouts/nav/navbar';
 import Dashboard from './components/dashboard/dashboard';
+import AddClient from './components/addClient/addClient';
 
 export class app extends Component {
     render() {
@@ -29,7 +30,10 @@ export class app extends Component {
                             <Nav/>
                             <div className="container">
                             <Switch>
-                                <Route to = "/" exact component = {Dashboard}/>
+                                <Route exact path = "/"  component = {Dashboard}/>
+                                <Route exact path = "/dashboard" component = {Dashboard}/>
+
+                                <Route exact path = "/client/add" component = {AddClient}/>
                             </Switch>
                             </div>
                         </div>
