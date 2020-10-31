@@ -8,7 +8,8 @@ import BackAndAction from '../layouts/backAndAction/backAndAction';
 export class clientDetails extends Component {
 
     state = {
-        showInput: false
+        showInput: false,
+        updatedBalance: ''
     }
 
     editHandler = () =>{
@@ -19,11 +20,26 @@ export class clientDetails extends Component {
         });
     }
 
+
+    onSubmitHandler = (e) =>{
+        e.preventDefault();
+
+        const {firestore} = this.props;
+        const {id} = this.props.client;
+        const {updatedBalance} = this.state;
+
+        firestore.update({collection: 'clients', doc: id}, {balance: parseFloat(updatedBalance)});
+
+        this.setState(state => ({showInput: !state.showInput}));
+    }
+
+    onChangeHandler = (e) => this.setState({[e.target.name]: e.target.value});
+
     render() {
 
         const {client} = this.props;
-        console.log(client);
-
+        const {updatedBalance} = this.state;
+        const {history} = this.props;
         if(!isLoaded(client)) {
             return(
                 <div>
@@ -39,11 +55,11 @@ export class clientDetails extends Component {
 
         return (
             <div className="client-details">
-                <BackAndAction/>
+                <BackAndAction client = {client} history = {history}/>
                 <hr/>
                 <div className="card">
                     <div className="card-body">
-                        <h3 className = "card-header">{this.props.client.firstName} {this.props.client.lastName}</h3>
+                        <h3 className = "card-header">{client.firstName} {client.lastName}</h3>
  
 
                         <div className="card-body row"> 
@@ -52,7 +68,7 @@ export class clientDetails extends Component {
                                 <h5 className="card-title">
                                     Client ID: 
                                     {" "}
-                                    <span className = "text-secondary ml-1">{this.props.client.id}</span>
+                                    <span className = "text-secondary ml-1">{client.id}</span>
                                     
                                 </h5>
                             </div>
@@ -64,10 +80,10 @@ export class clientDetails extends Component {
 
                                     {
                                     
-                                    this.props.client.balance > 0 ? (
-                                        <span className = "text-danger">${this.props.client.balance}</span>
+                                    client.balance > 0 ? (
+                                        <span className = "text-danger">${client.balance}</span>
                          
-                                    ): (<span className = "text-success">${this.props.client.balance}</span>)
+                                    ): (<span className = "text-success">${client.balance}</span>)
                                     
                                     }
 
@@ -80,17 +96,27 @@ export class clientDetails extends Component {
 
                         {
                             this.state.showInput ?  <div className="row">
-                            <div className="col text-right">
-                                <input className = "mr-3" type="text"/>
-                                <a className = "btn btn-outline-primary btn-sm mb-1">Update</a>
+                            <div className="col text-md-right mr-2">
+
+                                <form onSubmit = {this.onSubmitHandler}>
+                                    <input className = "mr-3" 
+                                        type="text"
+                                        name = "updatedBalance"
+                                        placeholder = "Enter updated balance"
+                                        value = {updatedBalance}
+                                        onChange = {this.onChangeHandler}
+                                    />
+                                    
+                                    <input type = "submit" value = "Update" className = "btn btn-outline-primary btn-sm mb-1"/>
+                                </form>
                             </div>
                         </div>:null
                         }
 
                         <div className=" card card-body">
-                            <p > <strong>Email:</strong>  <span className = "ml-1">{this.props.client.email}</span> </p> 
+                            <p > <strong>Email:</strong>  <span className = "ml-1">{client.email}</span> </p> 
                             
-                            <p> <strong>Phone:</strong> <span className = "ml-1">{this.props.client.phone}</span> </p> 
+                            <p> <strong>Phone:</strong> <span className = "ml-1">{client.phone}</span> </p> 
                         </div>
 
 

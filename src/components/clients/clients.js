@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 // For getting data from the cloud firestore
 import {connect} from 'react-redux';
 import {compose} from 'redux';
-import {firestoreConnect, isLoaded} from 'react-redux-firebase';
+import {firestoreConnect, isLoaded,  isEmpty} from 'react-redux-firebase';
 export class clients extends Component {
     constructor(props) {
         super(props);
@@ -23,6 +23,7 @@ export class clients extends Component {
 
     render() {
         const {clients}  = this.props;
+
         if(!isLoaded(clients)){
             return (
                 <div className="d-flex justify-content-center mt-5">
@@ -31,6 +32,14 @@ export class clients extends Component {
                     </div>
                 </div>
             )
+        }
+        else if(isEmpty(clients)){
+            return (
+                <div className="jumbotron">
+                    <h5>There is nothing to show here.</h5>
+                    <p>Click the green button to add a new client.</p>
+                </div>
+            );
         }
 
         if(clients.length !== 0){
