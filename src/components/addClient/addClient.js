@@ -50,7 +50,7 @@ export class addClient extends Component {
 
                 <div className="row mb-3">
                     <div className="col-md-12">
-                        <Link to = "/dashboard" className = "btn btn-outline-primary btn-block btn-sm">Go to dashboard</Link>
+                        <Link to = "/" className = "btn btn-outline-primary btn-block btn-sm">Go to dashboard</Link>
                     </div>
                 </div>
 
