@@ -13,6 +13,8 @@ import Nav from './components/layouts/nav/navbar';
 import Dashboard from './components/dashboard/dashboard';
 import AddClient from './components/addClient/addClient';
 import ClientDetails from './components/clientDetails/clientDetails';
+import EditClient from './components/editClient/editClient';
+
 export class app extends Component {
     render() {
         return (
@@ -34,6 +36,8 @@ export class app extends Component {
                                 <Route exact path = "/dashboard" component = {Dashboard}/>
 
                                 <Route exact path = "/client/add" component = {AddClient}/>
+
+                                <Route exact path = "/client/edit/:id" component = {EditClient}/>
 
 
                                 <Route exact path = "/client/:id" component = {ClientDetails}/>
