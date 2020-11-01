@@ -2,7 +2,7 @@
 // setup to work with firebase in react-redux project
 
 import firebase from 'firebase/app';
-// import 'firebase/auth'
+import 'firebase/auth'
 import 'firebase/firestore' // <- needed if using firestore
 // import 'firebase/functions' // <- needed if using httpsCallable
 import { createStore, combineReducers, compose } from 'redux';

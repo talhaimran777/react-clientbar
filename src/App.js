@@ -15,6 +15,7 @@ import AddClient from './components/addClient/addClient';
 import ClientDetails from './components/clientDetails/clientDetails';
 import EditClient from './components/editClient/editClient';
 import ErrorPage from './components/404page/404page';
+import Login from './components/login/login';
 
 export class app extends Component {
     render() {
@@ -33,6 +34,7 @@ export class app extends Component {
                             <Nav/>
                             <div className="container">
                             <Switch>
+                                <Route exact path = "/login"  component = {Login}/>
                                 <Route exact path = "/"  component = {Dashboard}/>
                                 <Route exact path = "/dashboard" component = {Dashboard}/>
 
