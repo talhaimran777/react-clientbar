@@ -19,6 +19,8 @@ import Login from './components/login/login';
 
 export class app extends Component {
     render() {
+
+        console.log(this.props);
         return (
             // Let's surround the app with the Router component 
             // <div className = "app">
@@ -31,6 +33,7 @@ export class app extends Component {
                 <ReactReduxFirebaseProvider {...rrfProps}>
                     <Router>
                         <div className="app">
+
                             <Nav/>
                             <div className="container">
                             <Switch>

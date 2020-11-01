@@ -16,6 +16,7 @@ export class login extends Component {
 
     onChange = (e) => this.setState({[e.target.name]: e.target.value})
     render() {
+        console.log(this.props);
         return (
             <div className = "col-md-8 col-lg-5 mx-auto mt-5">
                 <div className="card">
