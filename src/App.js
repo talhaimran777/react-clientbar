@@ -14,6 +14,7 @@ import Dashboard from './components/dashboard/dashboard';
 import AddClient from './components/addClient/addClient';
 import ClientDetails from './components/clientDetails/clientDetails';
 import EditClient from './components/editClient/editClient';
+import ErrorPage from './components/404page/404page';
 
 export class app extends Component {
     render() {
@@ -41,6 +42,8 @@ export class app extends Component {
 
 
                                 <Route exact path = "/client/:id" component = {ClientDetails}/>
+
+                                <Route path = "/" component = {ErrorPage}/>
 
                             </Switch>
                             </div>
